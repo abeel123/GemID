@@ -16,6 +16,8 @@
 		EA9774372A522436006344B9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9774362A522436006344B9 /* Extensions.swift */; };
 		EA97743D2A52D2A9006344B9 /* GemClassifier_100_iter.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = EA97743C2A52D2A9006344B9 /* GemClassifier_100_iter.mlmodel */; };
 		EA97743F2A561AB5006344B9 /* textFont in Resources */ = {isa = PBXBuildFile; fileRef = EA97743E2A561AB5006344B9 /* textFont */; };
+		EACACF552A5FBC2A003F65E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EACACF542A5FBC2A003F65E9 /* GoogleService-Info.plist */; };
+		EACACF582A5FC4EB003F65E9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EACACF572A5FC4EB003F65E9 /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,7 @@
 		EA97743C2A52D2A9006344B9 /* GemClassifier_100_iter.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GemClassifier_100_iter.mlmodel; sourceTree = "<group>"; };
 		EA97743E2A561AB5006344B9 /* textFont */ = {isa = PBXFileReference; lastKnownFileType = folder; path = textFont; sourceTree = "<group>"; };
 		EACACF532A5FB05D003F65E9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		EACACF542A5FBC2A003F65E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EACACF582A5FC4EB003F65E9 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +67,7 @@
 		EA97741F2A522213006344B9 /* GemID */ = {
 			isa = PBXGroup;
 			children = (
+				EACACF542A5FBC2A003F65E9 /* GoogleService-Info.plist */,
 				EA9774202A522213006344B9 /* AppDelegate.swift */,
 				EA9774222A522213006344B9 /* SceneDelegate.swift */,
 				EA9774242A522213006344B9 /* ViewController.swift */,
@@ -94,6 +99,9 @@
 			dependencies = (
 			);
 			name = GemID;
+			packageProductDependencies = (
+				EACACF572A5FC4EB003F65E9 /* FirebaseFirestore */,
+			);
 			productName = GemID;
 			productReference = EA97741D2A522213006344B9 /* GemID.app */;
 			productType = "com.apple.product-type.application";
@@ -122,6 +130,9 @@
 				Base,
 			);
 			mainGroup = EA9774142A522213006344B9;
+			packageReferences = (
+				EACACF562A5FC4EB003F65E9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = EA97741E2A522213006344B9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,6 +149,7 @@
 			files = (
 				EA97743F2A561AB5006344B9 /* textFont in Resources */,
 				EA97742D2A522214006344B9 /* LaunchScreen.storyboard in Resources */,
+				EACACF552A5FBC2A003F65E9 /* GoogleService-Info.plist in Resources */,
 				EA97742A2A522214006344B9 /* Assets.xcassets in Resources */,
 				EA9774282A522213006344B9 /* Main.storyboard in Resources */,
 			);
@@ -317,9 +329,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Personal.GemID;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -346,9 +361,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Personal.GemID;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -374,6 +392,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EACACF562A5FC4EB003F65E9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EACACF572A5FC4EB003F65E9 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EACACF562A5FC4EB003F65E9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EA9774152A522213006344B9 /* Project object */;
 }
