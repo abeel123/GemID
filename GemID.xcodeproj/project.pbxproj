@@ -30,6 +30,7 @@
 		EA9774362A522436006344B9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		EA97743C2A52D2A9006344B9 /* GemClassifier_100_iter.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = GemClassifier_100_iter.mlmodel; sourceTree = "<group>"; };
 		EA97743E2A561AB5006344B9 /* textFont */ = {isa = PBXFileReference; lastKnownFileType = folder; path = textFont; sourceTree = "<group>"; };
+		EACACF532A5FB05D003F65E9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +73,7 @@
 				EA9774362A522436006344B9 /* Extensions.swift */,
 				EA97743C2A52D2A9006344B9 /* GemClassifier_100_iter.mlmodel */,
 				EA97743E2A561AB5006344B9 /* textFont */,
+				EACACF532A5FB05D003F65E9 /* README.md */,
 			);
 			path = GemID;
 			sourceTree = "<group>";
