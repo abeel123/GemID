@@ -51,6 +51,7 @@
 		EA9774142A522213006344B9 = {
 			isa = PBXGroup;
 			children = (
+				EACACF532A5FB05D003F65E9 /* README.md */,
 				EA97741F2A522213006344B9 /* GemID */,
 				EA97741E2A522213006344B9 /* Products */,
 			);
@@ -78,7 +79,6 @@
 				EA9774362A522436006344B9 /* Extensions.swift */,
 				EA97743C2A52D2A9006344B9 /* GemClassifier_100_iter.mlmodel */,
 				EA97743E2A561AB5006344B9 /* textFont */,
-				EACACF532A5FB05D003F65E9 /* README.md */,
 			);
 			path = GemID;
 			sourceTree = "<group>";

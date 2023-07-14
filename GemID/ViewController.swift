@@ -8,13 +8,15 @@
 import CoreML
 import UIKit
 import SwiftUI
+import FirebaseFirestore
 
 
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    let db = Firestore.firestore()
+
     //App UI components
-    
     //header line
     private let lineView: UIView = {
         let lineView = UIView()
@@ -62,15 +64,32 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return label
     }()
     
+    //description box
+    private let descBox: UITextView = {
+        let descBox = UITextView()
+        descBox.text = ""
+        descBox.textAlignment = .center
+        descBox.textColor = UIColor(named: "ColorRedOrangeDark")
+        descBox.font = UIFont(name: "georgia-bold", size: 25)
+        descBox.isScrollEnabled = true
+        descBox.isEditable = false
+        descBox.backgroundColor = UIColor(named: "ColorLightOrange")
+        descBox.isSelectable = false
+        descBox.contentInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+
+        return descBox
+    }()
+    
     //load conponents
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.addSubview(label)
         view.addSubview(imageView)
         view.addSubview(header)
         view.addSubview(lineView)
         view.addSubview(credits)
-
+        view.addSubview(descBox)
         view.backgroundColor = UIColor(named: "ColorLightOrange")
         
         //tap gesture initialization for image selection
@@ -78,6 +97,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         tap.numberOfTapsRequired = 1
         imageView.isUserInteractionEnabled = true
         imageView.addGestureRecognizer(tap)
+        
+        
+
     }
     
     //layout positioning
@@ -87,6 +109,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             label.frame = CGRect(x: 20, y: view.safeAreaInsets.top+(view.frame.size.width-40)+50, width: view.frame.size.width-40, height: 150)
             header.frame = CGRect(x: 20, y: -90, width: view.frame.size.width-40, height: view.frame.size.width-60)
             credits.frame = CGRect(x: 280, y: -90, width: view.frame.size.width-40, height: view.frame.size.width-40)
+            descBox.frame = CGRect(x: 10, y: 600, width: 370, height: 200)
     }
     
     //function exe after image tapped, gives library or camera option
@@ -147,6 +170,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             ///predicton is model's confidence in prediction
             ///set image label to formatted string with output info
             let text = output.classLabel
+            getGemDesc(resultText: text)
             let percent = output.classLabelProbs.max(by:{$0.value < $1.value})
             let prediction = Double(floor(1000*(percent!.value * 100))/1000)
             label.text = "The machine is \(prediction)% confident this is \(text)"
@@ -169,8 +193,30 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         imageView.image = image
         analyzeImg(image: image)
-        
     }
     
+    //get gem description from firebase
+    func getGemDesc(resultText: String){
+        let docRef = db.document("Gems/Gem-List")
+        docRef.getDocument {[weak self] snapshot, error in
+            guard let data = snapshot?.data(), error == nil else {
+                return
+            }
+            //set description
+            guard let desc = data["\(resultText)"] as? String else {
+                return
+            }
+
+            //update UI to show description
+            DispatchQueue.main.async {
+                self?.descBox.text = desc
+                self?.descBox.layer.borderWidth = 2
+                self?.descBox.sizeToFit()
+                self?.descBox.layer.borderColor = UIColor(named: "ColorRedOrangeDark")?.cgColor
+                self?.descBox.layer.cornerRadius = 10
+            }
+        }
+        
+    }
 }
 
